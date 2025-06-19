@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To Mahnoor ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      font-family: 'Open Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .instruction {
+      font-size: 1.5em;
+      color: #a93226;
+      margin-bottom: 20px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px 20px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .envelope {
+      position: relative;
+      width: 200px;
+      height: 130px;
+      background: #fff;
+      border: 2px solid #c94b4b;
+      cursor: pointer;
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      z-index: 5;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 65px;
+      background: #c94b4b;
+      transform-origin: top;
+      transform: rotateX(0deg);
+      transition: transform 1s ease;
+      z-index: 2;
+    }
+
+    .letter {
+      display: none;
+      max-width: 100%;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease forwards;
+      z-index: 4;
+    }
+
+    .letter h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2em;
+      color: #c94b4b;
+      margin-bottom: 15px;
+    }
+
+    .letter p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .hearts {
+      font-size: 2em;
+      margin-top: 20px;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    .surprise {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .surprise img {
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .reply-btn {
+      padding: 10px 25px;
+      background-color: #c94b4b;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 15px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .reply-btn:hover {
+      background-color: #a93226;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .falling-heart, .floating-word {
+      position: fixed;
+      font-size: 24px;
+      animation: floatWords 15s linear;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .falling-heart {
+      top: -50px;
+      color: #ff4d6d;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+
+    @keyframes floatWords {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      20%, 80% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .click-to-reveal {
+      display: none;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: #a93226;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/13/audio_6fa384f1de.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <div class="instruction" id="instructionText">A letter for my cutie — Tap the letter 📬</div>
+
+    <div class="envelope" onclick="openEnvelope(this)">
+      <div class="flap"></div>
+    </div>
+
+    <div class="letter" id="letterContent">
+      <h1>To My Pookie Wookie Cookie Mahnoor ❤️</h1>
+      <p>
+        I miss you so much, My muffin. <br />
+        I know we did not talk properly these days.<br />
+        I miss your cutsey texts and your cute hmphs,<br />
+        You are so cute omg I just wanna *hugs you tightly and pats you infinite times*.<br />
+        You are the sweetest, prettiest, and bestest omg *cuteness aggression*.
+      </p>
+      <div class="hearts">📩💖📩</div>
+      <div class="click-to-reveal" id="showSurprise" onclick="revealSurprise()">Click here for a surprise! 🏱</div>
+      <div class="surprise" id="surpriseBox">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3pjanUwbGh4MzJlYXZicDdxNXRuM2RxNnM4M3B3bmExN2Q4ZDl5ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="Cute Surprise" />
+        <button class="reply-btn" onclick="restart()">Reply to this letter 📩</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openEnvelope(el) {
+      const flap = el.querySelector('.flap');
+      flap.style.transform = "rotateX(-120deg)";
+      setTimeout(() => {
+        el.style.display = 'none';
+        document.getElementById('letterContent').style.display = 'block';
+        document.getElementById('instructionText').style.opacity = 0;
+        document.getElementById('showSurprise').style.display = 'block';
+      }, 1000);
+    }
+
+    function revealSurprise() {
+      document.getElementById('surpriseBox').style.display = 'flex';
+      document.getElementById('showSurprise').style.display = 'none';
+    }
+
+    function restart() {
+      window.location.reload();
+    }
+
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('falling-heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      heart.innerText = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+
+    const words = ["cutie", "sunshine", "hmphs", "cuddles", "🧚", "🦖", "✨", "angel", "pookie"];
+    setInterval(() => {
+      const word = document.createElement('div');
+      word.classList.add('floating-word');
+      word.innerText = words[Math.floor(Math.random() * words.length)];
+      word.style.left = Math.random() * 100 + "vw";
+      word.style.top = "100vh";
+      word.style.animationDuration = "15s";
+      document.body.appendChild(word);
+      setTimeout(() => word.remove(), 15000);
+    }, 1500);
+  </script>
+</body>
+</html>
